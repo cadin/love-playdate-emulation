@@ -1,5 +1,5 @@
 -- global pd color values 
-BLACK = {0,0,0}
+BLACK = {0.193, 0.184, 0.158}
 WHITE = {0.747, 0.757, 0.743}
 
 local SCREENW = 400

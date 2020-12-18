@@ -7,12 +7,8 @@ local SCREENW = 400
 local SCREENH = 240
 
 local canvas
-
-local device 
+local deviceImg
 local deviceScale = 1.18
-
-
-
 
 function setPlaydateWindow(useDevice, scale)
 	love.graphics.setLineStyle('rough')
@@ -25,7 +21,7 @@ end
 
 function playdateDevice(scale)
 	love.graphics.setBackgroundColor(PURPLE)
-	device = love.graphics.newImage("images/device-wShadow.png")
+	deviceImg = love.graphics.newImage("images/device-wShadow.png")
 	love.window.setMode(600 * deviceScale , 509 * deviceScale , { highdpi=false})
 	love.window.setTitle("Playdate")
 end
@@ -45,7 +41,7 @@ end
 
 function playdateDraw(useDevice, scale)
 	if useDevice then
-		love.graphics.draw(device, 0, 0, 0, 0.5 * deviceScale, 0.5 * deviceScale)
+		love.graphics.draw(deviceImg, 0, 0, 0, 0.5 * deviceScale, 0.5 * deviceScale)
 		love.graphics.draw(canvas, 66, 63)
 	else
 		love.graphics.draw(canvas, 0, 0, 0, scale, scale)

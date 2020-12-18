@@ -9,7 +9,9 @@ local velX = 0
 local velY = 0
 
 function loadGame()
+	undies = love.graphics.newImage("images/undies.png")
 
+	
 end
 
 function updateGame(dt)
@@ -43,10 +45,13 @@ end
 
 
 function drawGame(canvas)
+	-- love.graphics.setShader(myShader)
 	love.graphics.setCanvas(canvas)        
 		love.graphics.clear(WHITE)
-		love.graphics.setColor(BLACK)
-		love.graphics.circle('line', math.floor(x), math.floor(y), 20)
-		love.graphics.circle("fill", math.floor(x), math.floor(y), 1)
+		-- love.graphics.setColor(BLACK)
+		-- love.graphics.circle('line', math.floor(x), math.floor(y), 20)
+		-- love.graphics.circle("fill", math.floor(x), math.floor(y), 1)
+		love.graphics.draw(undies, math.floor(x-32), math.floor(y-32))
 	love.graphics.setCanvas()
+	-- love.graphics.setShader()
 end

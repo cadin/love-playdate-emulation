@@ -26,7 +26,7 @@ end
 
 function love.draw() 
 	drawGame(canvas)
+	
 	love.graphics.setColor(1, 1, 1, 1)
-
 	playdateDraw(useDevice, SCALE)
 end

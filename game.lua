@@ -40,11 +40,11 @@ function updateGame(dt)
 	velX = velX * friction
 	velY = velY * friction
 
-	if (x > 380 and velX > 0) or (x < 20 and velX < 0) then 
+	if (x > 385 and velX > 0) or (x < 15 and velX < 0) then 
 		velX = velX * -0.8
 	end
 
-	if (y > 220 and velY > 0) or (y < 20 and velY < 0) then
+	if (y > 225 and velY > 0) or (y < 15 and velY < 0) then
 		velY = velY * -0.8
 	end
 

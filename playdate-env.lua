@@ -1,28 +1,54 @@
 -- global pd color values 
 BLACK = {0.193, 0.184, 0.158}
 WHITE = {0.747, 0.757, 0.743}
+PURPLE = {0.461, 0, 0.967}
 
 local SCREENW = 400
 local SCREENH = 240
 
+local canvas
+
+local device 
+local deviceScale = 1.18
+
+
+
+
+function setPlaydateWindow(useDevice, scale)
+	love.graphics.setLineStyle('rough')
+	if useDevice then
+		playdateDevice(scale)
+	else 
+		playdateWindow(scale)
+	end
+end
+
+function playdateDevice(scale)
+	love.graphics.setBackgroundColor(PURPLE)
+	device = love.graphics.newImage("images/device-wShadow.png")
+	love.window.setMode(600 * deviceScale , 509 * deviceScale , { highdpi=false})
+	love.window.setTitle("Playdate")
+end
 
 function playdateWindow(scale)
 	local s = scale or 1
-
-	love.graphics.setDefaultFilter("nearest", "nearest", 1)
-	love.graphics.setLineStyle('rough')
 	love.window.setMode(SCREENW * s, SCREENH * s)
+	love.window.setTitle("Playdate Screen @" .. scale .. "x")
 end
 
 function createPlaydateCanvas()
-	local canvas = love.graphics.newCanvas(SCREENW, SCREENH)
+	canvas = love.graphics.newCanvas(SCREENW, SCREENH)
+	canvas:setFilter("nearest", "nearest", 1)
 
-	-- love.graphics.setCanvas(canvas)        
-	-- 	love.graphics.clear(WHITE)
-
-	-- 	love.graphics.setBlendMode("alpha")
-	-- 	love.graphics.setColor(BLACK)
-	-- 	love.graphics.circle('line', 150, 150, 50)
-	-- love.graphics.setCanvas()
 	return canvas
+end
+
+function playdateDraw(useDevice, scale)
+	if useDevice then
+		love.graphics.draw(device, 0, 0, 0, 0.5 * deviceScale, 0.5 * deviceScale)
+		love.graphics.draw(canvas, 66, 63)
+	else
+		love.graphics.draw(canvas, 0, 0, 0, scale, scale)
+	end
+	
 end

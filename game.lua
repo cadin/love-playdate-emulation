@@ -8,10 +8,20 @@ local acc = 2
 local velX = 0
 local velY = 0
 
-function loadGame()
-	undies = love.graphics.newImage("images/undies.png")
+local dir = 1
 
-	
+function loadGame()
+	bee = love.graphics.newImage("images/bee.png")
+
+	frames = {}
+	local frameW = 35
+	local frameH = 35
+
+	for i=0, 2 do
+		table.insert(frames, love.graphics.newQuad(i * frameW, 0, frameW, frameH, 105, 35))
+	end
+
+	currentFrame = 1
 end
 
 function updateGame(dt)
@@ -40,18 +50,24 @@ function updateGame(dt)
 
 	x = x + velX 
 	y = y + velY 
+	currentFrame = currentFrame + 20 * dt
+
+	if velX < 0 then
+		dir = -1 
+	else 
+		dir = 1
+	end
+
+	if currentFrame > 4 then
+		currentFrame = 1
+	end
 	
 end
 
 
 function drawGame(canvas)
-	-- love.graphics.setShader(myShader)
 	love.graphics.setCanvas(canvas)        
 		love.graphics.clear(WHITE)
-		-- love.graphics.setColor(BLACK)
-		-- love.graphics.circle('line', math.floor(x), math.floor(y), 20)
-		-- love.graphics.circle("fill", math.floor(x), math.floor(y), 1)
-		love.graphics.draw(undies, math.floor(x-32), math.floor(y-32))
+		love.graphics.draw(bee, frames[math.floor(currentFrame)], math.floor(x-(17* dir)), math.floor(y-17), 0,dir, 1)
 	love.graphics.setCanvas()
-	-- love.graphics.setShader()
 end

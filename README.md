@@ -19,6 +19,8 @@ This is not an actual Playdate emulator or simulator. I have no access to the ac
 ### Setup
 Clone this repo, and start building your game in the `game.lua` file.
 
+This file has `loadGame`, `updateGame`, and `drawGame` functions that corresond to LÖVE's `load`, `update`, and `draw`.
+
 ### Usage
 Your game should be built in the `game.lua` file. `main.lua` handles the basic setup and wraps your game in the simulated Playdate environment. `playdate-env.lua` contains the code for emulating the Playdate screen.
 

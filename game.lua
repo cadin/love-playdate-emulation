@@ -10,6 +10,8 @@ local velY = 0
 
 local dir = 1
 
+local clearScreen = true
+
 function loadGame()
 	bee = love.graphics.newImage("images/bee.png")
 
@@ -64,10 +66,15 @@ function updateGame(dt)
 	
 end
 
+function keypressed(key, code)
+	if key=="a" then
+		clearScreen = not clearScreen
+	end
+end
 
-function drawGame(canvas)
-	love.graphics.setCanvas(canvas)        
+function drawGame()
+	if clearScreen then
 		love.graphics.clear(WHITE)
-		love.graphics.draw(bee, frames[math.floor(currentFrame)], math.floor(x-(17* dir)), math.floor(y-17), 0,dir, 1)
-	love.graphics.setCanvas()
+	end
+	love.graphics.draw(bee, frames[math.floor(currentFrame)], math.floor(x-(17* dir)), math.floor(y-17), 0,dir, 1)
 end

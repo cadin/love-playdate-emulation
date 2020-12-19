@@ -47,7 +47,6 @@ end
 function createPlaydateCanvas()
 	canvas = love.graphics.newCanvas(SCREENW, SCREENH)
 	canvas:setFilter("nearest", "nearest", 1)
-
 	return canvas
 end
 
@@ -61,5 +60,7 @@ function playdateDraw(useDevice, scale)
 		love.graphics.draw(canvas, 0, 0, 0, scale, scale)
 	end
 	love.graphics.setShader()
+
+	
 	
 end

@@ -28,6 +28,12 @@ function love.keypressed(key, code)
 	elseif key=="2" then
 		SCALE = 2
 		setPlaydateWindow(useDevice, SCALE)
+	elseif key=="3" then
+		SCALE = 3
+		setPlaydateWindow(useDevice, SCALE)
+	elseif key=="4" then
+		SCALE = 4
+		setPlaydateWindow(useDevice, SCALE)
 	end
 
 	keypressed(key, code)

@@ -24,8 +24,9 @@ This file has `loadGame`, `updateGame`, and `drawGame` functions that corresond 
 ### Usage
 Your game should be built in the `game.lua` file. `main.lua` handles the basic setup and wraps your game in the simulated Playdate environment. `playdate-env.lua` contains the code for emulating the Playdate screen.
 
-When running your game, press `1` or `2` to toggle between 1x and 2x screen display.
-Press `d` to toggle the device image.
+When running your game, press keys `1` through `4` to view the screen display at 1x, 2x, 3x or 4x scale.  
+Press `d` to toggle the device image.  
+Press `Shift-D` to toggle scaling on the device image.
 
 ## License
 This project is licensed under the Unlicense - see the [LICENSE](LICENSE) file for details.

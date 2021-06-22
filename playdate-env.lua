@@ -5,10 +5,12 @@ PURPLE = {0.461, 0, 0.967}
 
 local SCREENW = 400
 local SCREENH = 240
+local DEVICE_SCALE_1x = 1.18
 
 local canvas
 local deviceImg
 local deviceScale = 1.18
+local scaleDeviceView = false
 
 lcdShader = love.graphics.newShader[[
 vec4 effect( vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords ){
@@ -21,7 +23,6 @@ vec4 effect( vec4 color, Image texture, vec2 texture_coords, vec2 screen_coords 
 }
 ]]
 
-
 function setPlaydateWindow(useDevice, scale)
 	love.graphics.setLineStyle('rough')
 	if useDevice then
@@ -31,11 +32,29 @@ function setPlaydateWindow(useDevice, scale)
 	end
 end
 
+function toggleDeviceViewScaling()
+	scaleDeviceView = not scaleDeviceView
+end
+
+function setDeviceScale(scale)
+	if scaleDeviceView then
+		deviceScale = DEVICE_SCALE_1x * scale
+	else 
+		deviceScale = DEVICE_SCALE_1x
+	end
+end
+
 function playdateDevice(scale)
+	setDeviceScale(scale)
+
 	love.graphics.setBackgroundColor(PURPLE)
 	deviceImg = love.graphics.newImage("images/device-wShadow.png")
-	love.window.setMode(600 * deviceScale * scale, 509 * deviceScale * scale , { highdpi=false})
-	love.window.setTitle("Playdate")
+	love.window.setMode(600 * deviceScale, 509 * deviceScale, { highdpi=false})
+	if scaleDeviceView then
+		love.window.setTitle("Playdate @" .. scale .. "x")
+	else 
+		love.window.setTitle("Playdate")
+	end
 end
 
 function playdateWindow(scale)
@@ -52,15 +71,14 @@ end
 
 function playdateDraw(useDevice, scale)
 	if useDevice then
-		love.graphics.draw(deviceImg, 0, 0, 0, 0.5 * deviceScale * scale)
+		local canvasScale  = 1
+		if scaleDeviceView then canvasScale = scale end
+		love.graphics.draw(deviceImg, 0, 0, 0, 0.5 * deviceScale)
 		love.graphics.setShader(lcdShader)
-		love.graphics.draw(canvas, 66 * scale, 64 * scale, 0, scale)
+		love.graphics.draw(canvas, 66 * canvasScale, 64 * canvasScale, 0, canvasScale)
 	else
 		love.graphics.setShader(lcdShader)
 		love.graphics.draw(canvas, 0, 0, 0, scale, scale)
 	end
 	love.graphics.setShader()
-
-	
-	
 end

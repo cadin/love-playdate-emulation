@@ -3,9 +3,7 @@ require("game")
 
 local SCALE = 2
 local useDevice = false
-
 local canvas
-
 
 function love.load()
 	setPlaydateWindow(useDevice, SCALE)
@@ -19,9 +17,12 @@ end
 
 function love.keypressed(key, code)
 	if key == "d" then
-		useDevice = not useDevice
+		if love.keyboard.isDown("lshift") or love.keyboard.isDown("rshift") then
+			toggleDeviceViewScaling()
+		else
+			useDevice = not useDevice
+		end
 		setPlaydateWindow(useDevice, SCALE)
-
 	elseif key=="1" then
 		SCALE = 1
 		setPlaydateWindow(useDevice, SCALE)

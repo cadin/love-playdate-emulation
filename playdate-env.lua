@@ -34,7 +34,7 @@ end
 function playdateDevice(scale)
 	love.graphics.setBackgroundColor(PURPLE)
 	deviceImg = love.graphics.newImage("images/device-wShadow.png")
-	love.window.setMode(600 * deviceScale , 509 * deviceScale , { highdpi=false})
+	love.window.setMode(600 * deviceScale * scale, 509 * deviceScale * scale , { highdpi=false})
 	love.window.setTitle("Playdate")
 end
 
@@ -52,9 +52,9 @@ end
 
 function playdateDraw(useDevice, scale)
 	if useDevice then
-		love.graphics.draw(deviceImg, 0, 0, 0, 0.5 * deviceScale, 0.5 * deviceScale)
+		love.graphics.draw(deviceImg, 0, 0, 0, 0.5 * deviceScale * scale)
 		love.graphics.setShader(lcdShader)
-		love.graphics.draw(canvas, 66, 63)
+		love.graphics.draw(canvas, 66 * scale, 64 * scale, 0, scale)
 	else
 		love.graphics.setShader(lcdShader)
 		love.graphics.draw(canvas, 0, 0, 0, scale, scale)

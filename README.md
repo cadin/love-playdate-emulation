@@ -1,4 +1,4 @@
-# playdate-emulation
+# love-playdate-emulation
 
 A basic template for previewing games built with [LÖVE](https://love2d.org) in a [Playdate](https://play.date)-like environment.
 

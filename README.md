@@ -1,4 +1,13 @@
-# love-playdate-emulation
+# Playdate SDK Now Available!
+The official [Playdate SDK](https://play.date/dev/) is now publicly available. 
+
+👆 **Use that instead of this**. 👆
+
+This project is no longer active and will be archived.
+
+
+  
+## love-playdate-emulation
 
 A basic template for previewing games built with [LÖVE](https://love2d.org) in a [Playdate](https://play.date)-like environment.
 
